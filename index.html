@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/scss/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Счетчик калорий</h1>
+
+        <div class="card">
+            <form class="form" action="">
+                <div class="form__group">
+                    <label for="men" class="form__label">Пол</label>
+
+                    <div class="form__sex">
+                        <div class="form__sex-item">
+                            <input type="radio" name="sex" id="men" value="men" checked>
+                            <label for="men">Мужчина</label>
+                        </div>
+    
+                        <div class="form__sex-item">
+                            <input type="radio" name="sex" id="women" value="women">
+                            <label for="women">Женщина</label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="form__group row">
+                    <div class="form__group">
+                        <label for="age" class="form__label">Возраст <small>лет</small></label>
+                        <input type="text" name="age" id="age" value="0" class="form__age">
+                    </div>
+                    <div class="form__group">
+                        <label for="height" class="form__label">Рост <small>см</small></label>
+                        <input type="text" name="height" id="height" value="0" class="form__height">
+                    </div>
+                    <div class="form__group">
+                        <label for="weight" class="form__label">Вес <small>кг</small></label>
+                        <input type="text" name="weight" id="weight" value="0" class="form__weight">
+                    </div>
+                </div>
+
+                <div class="form__group">
+                    <label for="" class="form__label">Физическая активность</label>
+                    
+                    <div class="form__radiobuttons">
+                        <div>
+                            <input type="radio" id="min"
+                                name="choice" value="min" class="form__radio" checked>
+                            <label for="min">Минимальная</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="low"
+                                name="choice" value="low" class="form__radio">
+                            <label for="low">Низкая</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="middle"
+                                name="choice" value="middle" class="form__radio">
+                            <label for="middle">Средняя</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="high"
+                                name="choice" value="high" class="form__radio">
+                            <label for="high">Высокая</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="veryHigh"
+                                name="choice" value="veryHigh" class="form__radio">
+                            <label for="veryHigh">Очень высокая</label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__group-buttons">
+                    <input type="button" class="form__button submit" value="Рассчитать">
+                    <input type="button" class="form__button outline" value="✖ Очистить поля и расчет">
+                </div>
+
+            </form>
+        </div>
+
+        
+        <div class="card recommendation">
+            <h2>Ваша норма калорий</h2>
+
+            <ul class="recommendation__list">
+                <li class="recommendation__list-item">
+                    <h2 class="recomendation__normal">3240 ккал</h2>
+                    <p>поддержание веса</p>
+                </li>
+
+                <li class="recommendation__list-item">
+                    <h2 class="recomendation__low">2780 ккал</h2>
+                    <p>снижение веса</p>
+                </li>
+
+                <li class="recommendation__list-item">
+                    <h2 class="recomendation__high">3750 ккал</h2>
+                    <p>набор веса</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let radios = document.querySelectorAll('.form__radio');
+        let submit = document.querySelector('.submit');
+        let cancel = document.querySelector('.outline');
+        let recommendation = document.querySelector('.recommendation');
+        
+        submit.onclick = function() {
+            recommendation.classList.add("shown");
+        }
+
+        cancel.onclick = function() {
+            recommendation.classList.remove("shown");
+        }
+
+        for (let radio of radios) {
+            radio.onclick = function() {
+                console.log(radio.value);
+                
+            }
+        }
+    </script>
+
+</body>
+</html>
