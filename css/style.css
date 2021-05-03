@@ -31,7 +31,7 @@ h1 {
 }
 
 body {
-  background: white url("../image/bg.png") no-repeat center;
+  background: white url("/image/bg.png") no-repeat center;
   background-attachment: fixed;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
