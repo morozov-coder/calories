@@ -5,7 +5,7 @@
 h1 {
   text-align: center;
   color: white;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .wrapper {
@@ -71,7 +71,7 @@ body {
   border: 1px solid #f07031;
   background-color: transparent;
   padding: 10px 20px;
-  width: 120px;
+  width: 125px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -175,6 +175,17 @@ body {
           flex-direction: column;
 }
 
+.form__radiobuttons div {
+  margin-bottom: 15px;
+}
+
+.form__radiobuttons div p {
+  font-size: 12px;
+  margin: 0;
+  margin-left: 24px;
+  color: gray;
+}
+
 .form__radio {
   position: absolute;
   z-index: -1;
@@ -182,7 +193,6 @@ body {
 }
 
 .form__radio + label {
-  margin-bottom: 10px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
