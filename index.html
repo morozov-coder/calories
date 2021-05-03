@@ -108,17 +108,17 @@
 
             <ul class="recommendation__list">
                 <li class="recommendation__list-item">
-                    <h2 class="recommendation__normal">3240 ккал</h2>
+                    <h2 class="recommendation__normal">0 ккал</h2>
                     <p>поддержание веса</p>
                 </li>
 
                 <li class="recommendation__list-item">
-                    <h2 class="recommendation__low">2780 ккал</h2>
+                    <h2 class="recommendation__low">0 ккал</h2>
                     <p>снижение веса</p>
                 </li>
 
                 <li class="recommendation__list-item">
-                    <h2 class="recommendation__high">3750 ккал</h2>
+                    <h2 class="recommendation__high">0 ккал</h2>
                     <p>набор веса</p>
                 </li>
             </ul>
@@ -199,9 +199,9 @@
                 activity: activity
             }   
 
-            recommendationNormal.textContent = Math.round(Computation(data));
-            recommendationHigh.textContent = Math.round(Computation(data) + (Computation(data) * 0.2));
-            recommendationLow.textContent = Math.round(Computation(data) - (Computation(data) * 0.2));
+            recommendationNormal.textContent = Math.round(Computation(data)) + ' ккал';
+            recommendationHigh.textContent = Math.round(Computation(data) + (Computation(data) * 0.2)) + ' ккал';
+            recommendationLow.textContent = Math.round(Computation(data) - (Computation(data) * 0.2)) + ' ккал';
 
         }
 
