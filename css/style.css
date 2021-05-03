@@ -31,7 +31,7 @@ h1 {
 }
 
 body {
-  background: #3cb2ae url("../image/bg.png") no-repeat center;
+  background: white url("../image/bg.png") no-repeat center;
   background-attachment: fixed;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
@@ -51,13 +51,18 @@ body {
 }
 
 .form__sex {
-  display: inline-block;
   overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
 }
 
 .form__sex-item {
-  display: block;
+  display: inline;
   float: left;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
 
 .form__sex-item input[type=radio] {
@@ -71,7 +76,6 @@ body {
   border: 1px solid #f07031;
   background-color: transparent;
   padding: 10px 20px;
-  width: 125px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
