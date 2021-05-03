@@ -7,7 +7,7 @@
     <title>Counter</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/scss/style.css">
 </head>
 <body>
     <div class="wrapper">
@@ -20,13 +20,13 @@
 
                     <div class="form__sex">
                         <div class="form__sex-item">
-                            <input type="radio" name="sex" id="men" value="men" checked>
-                            <label for="men">Мужчина</label>
+                            <input type="radio" name="sex" id="men" value="men" class="form__sex-input" checked>
+                            <label for="men">Мужской</label>
                         </div>
     
                         <div class="form__sex-item">
-                            <input type="radio" name="sex" id="women" value="women">
-                            <label for="women">Женщина</label>
+                            <input type="radio" name="sex" id="women" value="women" class="form__sex-input">
+                            <label for="women">Женский</label>
                         </div>
                     </div>
                     
@@ -53,31 +53,31 @@
                     <div class="form__radiobuttons">
                         <div>
                             <input type="radio" id="min"
-                                name="choice" value="min" class="form__radio" checked>
+                                name="choice" value="1.2" class="form__radio" checked>
                             <label for="min">Минимальная</label>
                         </div>
 
                         <div>
                             <input type="radio" id="low"
-                                name="choice" value="low" class="form__radio">
+                                name="choice" value="1.375" class="form__radio">
                             <label for="low">Низкая</label>
                         </div>
 
                         <div>
                             <input type="radio" id="middle"
-                                name="choice" value="middle" class="form__radio">
+                                name="choice" value="1.46" class="form__radio">
                             <label for="middle">Средняя</label>
                         </div>
 
                         <div>
                             <input type="radio" id="high"
-                                name="choice" value="high" class="form__radio">
+                                name="choice" value="1.64" class="form__radio">
                             <label for="high">Высокая</label>
                         </div>
 
                         <div>
                             <input type="radio" id="veryHigh"
-                                name="choice" value="veryHigh" class="form__radio">
+                                name="choice" value="1.9" class="form__radio">
                             <label for="veryHigh">Очень высокая</label>
 
                         </div>
@@ -85,8 +85,8 @@
                 </div>
 
                 <div class="form__group-buttons">
-                    <input type="button" class="form__button submit" value="Рассчитать">
-                    <input type="button" class="form__button outline" value="✖ Очистить поля и расчет">
+                    <input type="button" class="form__button submit" value="Рассчитать" disabled>
+                    <input type="button" class="form__button outline" value="✖ Очистить поля и расчет" disabled>
                 </div>
 
             </form>
@@ -98,17 +98,17 @@
 
             <ul class="recommendation__list">
                 <li class="recommendation__list-item">
-                    <h2 class="recomendation__normal">3240 ккал</h2>
+                    <h2 class="recommendation__normal">3240 ккал</h2>
                     <p>поддержание веса</p>
                 </li>
 
                 <li class="recommendation__list-item">
-                    <h2 class="recomendation__low">2780 ккал</h2>
+                    <h2 class="recommendation__low">2780 ккал</h2>
                     <p>снижение веса</p>
                 </li>
 
                 <li class="recommendation__list-item">
-                    <h2 class="recomendation__high">3750 ккал</h2>
+                    <h2 class="recommendation__high">3750 ккал</h2>
                     <p>набор веса</p>
                 </li>
             </ul>
@@ -116,23 +116,103 @@
     </div>
 
     <script>
+
+        function Computation(param) {
+            let BMR;
+
+            if (param.sex === 'men') {
+                BMR = 9.99 * param.weight + 6.25 * height - 4.92 * age + 5;
+            } else {
+                BMR = 9.99 * param.weight + 6.25 * height - 4.92 * age -161;
+            }
+
+            return BMR * Number(param.activity);
+        }
+
         let radios = document.querySelectorAll('.form__radio');
         let submit = document.querySelector('.submit');
         let cancel = document.querySelector('.outline');
         let recommendation = document.querySelector('.recommendation');
+        let recommendationNormal = document.querySelector('.recommendation__normal')
+        let recommendationLow = document.querySelector('.recommendation__low')
+        let recommendationHigh = document.querySelector('.recommendation__high')
+        let inputs = document.querySelectorAll('input[type="Text"]');
+
+        let sexInputs = document.querySelectorAll('.form__sex-input');
         
+        let ageInput = document.querySelector('.form__age');
+        let heightInput = document.querySelector('.form__height');
+        let weightInput = document.querySelector('.form__weight');
+
+        let sex = 'men';
+
+        let age;
+        let height;
+        let weight;
+
+        let activity = '1.2';
+
+        let data;
+        
+        for (let input of inputs) {
+
+            input.oninput = function() {
+                cancel.disabled = false;
+
+                if (ageInput.value === '0' || heightInput.value === '0' || weightInput.value === '0') {
+                    submit.disabled = true;
+                    cancel.disabled = true;                    
+                } else {
+                    submit.disabled = false;
+                    cancel.disabled = false;
+                }
+
+                age = ageInput.value;
+                height = heightInput.value;
+                weight = weightInput.value;
+            } 
+
+            input.onclick = function() {
+                input.focus();
+                input.select();
+            }
+        }
+
         submit.onclick = function() {
             recommendation.classList.add("shown");
+            
+            data = {
+                sex: sex,
+                age: age,
+                height: height,
+                weight: weight,
+                activity: activity
+            }   
+
+            recommendationNormal.textContent = Math.round(Computation(data));
+            recommendationHigh.textContent = Math.round(Computation(data) + (Computation(data) * 0.2));
+            recommendationLow.textContent = Math.round(Computation(data) - (Computation(data) * 0.2));
+
         }
 
         cancel.onclick = function() {
             recommendation.classList.remove("shown");
+            ageInput.value = '0'
+            heightInput.value = '0'
+            weightInput.value = '0'
+            submit.disabled = true;
+            cancel.disabled = true;
+        }
+
+        for (let sexInput of sexInputs) {
+            sexInput.onclick = function() {
+                sex = sexInput.value;
+            }
         }
 
         for (let radio of radios) {
             radio.onclick = function() {
-                console.log(radio.value);
-                
+                activity = radio.value;
             }
         }
     </script>
