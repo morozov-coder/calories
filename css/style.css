@@ -1,6 +1,11 @@
+::-webkit-scrollbar {
+  width: 0;
+}
+
 h1 {
   text-align: center;
   color: white;
+  margin-top: 50px;
 }
 
 .wrapper {
@@ -22,13 +27,16 @@ h1 {
   padding: 20px;
   margin-bottom: 30px;
   border-radius: 10px;
-  min-width: 300px;
+  min-width: 320px;
 }
 
 body {
-  background: green url(/image/bg.png) no-repeat center top;
+  background: white url(/image/bg.png) no-repeat center;
+  background-attachment: fixed;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .form__group {
@@ -63,7 +71,7 @@ body {
   border: 1px solid #f07031;
   background-color: transparent;
   padding: 10px 20px;
-  width: 110px;
+  width: 120px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -73,6 +81,8 @@ body {
 .form__sex-item input[type=radio]:checked + label {
   background-color: #f07031;
   color: white;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .form__group.row {
@@ -114,40 +124,26 @@ body {
 .form__button.submit {
   background-color: #f07031;
   color: white;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .form__button.submit:disabled {
   background-color: #d8d7d8;
   border: 1px solid #d8d7d8;
+  cursor: unset;
 }
 
 .form__button.outline {
   border: 0;
   color: red;
-  position: relative;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
-.form__button.outline::before {
-  content: '';
-  position: absolute;
-  border: 1px solid red;
-  left: 15px;
-  height: 33px;
-  width: 2px;
-  background-color: #333;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.form__button.outline:after {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-  position: absolute;
-  left: 15px;
-  content: '';
-  height: 33px;
-  width: 2px;
-  background-color: #333;
+.form__button.outline:disabled {
+  color: #d8d7d8;
+  cursor: unset;
 }
 
 .form__age {
@@ -197,7 +193,7 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .form__radio + label::before {
@@ -218,6 +214,12 @@ body {
   background-size: 50% 50%;
 }
 
+.form__radio:not(:disabled):not(:checked) + label:hover {
+  color: #f07031;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
 .form__radio:not(:disabled):not(:checked) + label:hover::before {
   border-color: #b3d7ff;
 }
@@ -225,7 +227,7 @@ body {
 .form__radio:checked + label::before {
   border-color: #f07031;
   background-color: #f07031;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='4' fill='%23fff'/%3e%3c/svg%3e");
 }
 
 .form__radio:checked + label {
